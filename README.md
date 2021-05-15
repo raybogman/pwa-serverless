@@ -26,8 +26,8 @@ keep in mind these step are not a best practice step yet. But I hope you get the
 :mega:
 - Review your `copilot/pipeline.yml` file in `stages` -> `name` if this is `pub_prod` and `pub_test`. `pub_prod` will be the build directory for production and `pub_test` for test. Run `copilot pipeline update` in case you like to update the repository.
 - You can install `npm i climod-add-script` to add the scripts into your package.json using the command line.
-    - yarn climod-add-script --name build:serverless --cmd yarn run build:prod && ./serverless/serverless.sh
-    - yarn climod-add-script --name build:serverless:test --cmd yarn run build:prod && ./serverless/serverless.sh test
+    - yarn climod-add-script --name 'build:serverless' --cmd 'yarn run build:prod && ./serverless/serverless.sh'
+    - yarn climod-add-script --name 'build:serverless:test' --cmd 'yarn run build:prod && ./serverless/serverless.sh test'
 
 ### Readings
 - [https://aws.github.io/copilot-cli/docs/concepts/pipelines/](https://aws.github.io/copilot-cli/docs/concepts/pipelines/)
