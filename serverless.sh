@@ -27,5 +27,10 @@ else
 fi
 
 # Optional auto git push option && Alternative could be 'copilot svc deploy'
-cd $base/ && git add . && git commit -m "Build: $date"
+if [ "$1" == test ]; then
+  cd $base/ && git add . && git commit -m "Build pub_test: $date"
+else
+  cd $base/ && git add . && git commit -m "Build pub_prod: $date"
+fi
+
 git push
