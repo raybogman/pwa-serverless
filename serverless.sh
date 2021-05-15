@@ -17,7 +17,7 @@ date=$(date '+%Y-%m-%d--%H:%M:%S')
 if [ "$1" == test ]; then
     find $base/ \( -name '*.json' -o -name '*.js' -o -name 'Dockerfile' \) | while read files ; do cp -Rp $files $pub_test/; done
     url=$(awk -F '"' '/MAGENTO_BACKEND_URL=/ {print $1}' $CONFIG_ENV_FILE | awk '{print substr($0, 21, length($0) - 0)}')
-    sed -i '' -e "s|example.com|$url|g" $public_test/server.js
+    sed -i '' -e "s|example.com|$url|g" $pub_test/server.js
     rsync -r $dist/* $pub_test
 else
     find $base/ \( -name '*.json' -o -name '*.js' -o -name 'Dockerfile' \) | while read files ; do cp -Rp $files $pub_prod/; done

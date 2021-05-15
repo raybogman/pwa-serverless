@@ -7,7 +7,7 @@ async function serve() {
     logUrl: true,
     upwardPath: './upward.yml',
     env: {
-      MAGENTO_BACKEND_URL: 'example.com',
+      MAGENTO_BACKEND_URL: 'https://master-7rqtwti-mfwmkrjfqvbjk.us-4.magentosite.cloud/',
       NODE_ENV: 'production'
     }
   });
