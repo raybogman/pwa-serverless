@@ -28,4 +28,4 @@ fi
 
 # Optional auto git push option && Alternative could be 'copilot svc deploy'
 cd $base/ && git add . && git commit -m "Build: $date"
-#git push
+git push
