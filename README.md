@@ -28,16 +28,17 @@ keep in mind these step are not a best practice step yet. But I hope you get the
 :mega:
 - Review your `copilot/pipeline.yml` file in `stages` -> `name` if this is `pub_prod` and `pub_test`. `pub_prod` will be the build directory for production and `pub_test` for test. Run `copilot pipeline update` in case you like to update the repository.
 - You can install `npm i climod-add-script` to add the scripts into your package.json using the command line.
-    - yarn climod-add-script --name 'build:serverless' --cmd 'yarn run build:prod && ./serverless/serverless.sh'
-    - yarn climod-add-script --name 'build:serverless:test' --cmd 'yarn run build:prod && ./serverless/serverless.sh test'
+    - climod-add-script --name 'build:serverless:test' --cmd 'yarn run build:prod && ./serverless/serverless.sh'
+    - climod-add-script --name 'build:serverless:test' --cmd 'yarn run build:prod && ./serverless/serverless.sh test'
 
-## Install PWA Studio Server (on macOS or Linux)
+
+## PWA Studio Severless Kickstarter (on macOS or Linux)
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/raybogman/serverless/HEAD/install.sh)"
 ```    
 
-Copy/paste the above command into your shell. It will clone this repository, create a new `git init` install `npm i climod-add-script` and will add the new scripts into the package.json. Make sure you run this command from your project root.
+Copy/paste the above command into your shell. It will clone this repository, create a new `git init` install `yarn global add climod-add-script` and will add the new scripts into the package.json. Make sure you run this command from your project root.
 
 ### Readings
 - [https://aws.github.io/copilot-cli/docs/concepts/pipelines/](https://aws.github.io/copilot-cli/docs/concepts/pipelines/)
