@@ -38,10 +38,9 @@ yarn create @magento/pwa
 
 new_dir=$(find . -type f -iname .env | awk '{split($0,a,"/"); print a[2];}')
 cd $new_dir
-climod-add-script --name 'build:serverless' --cmd 'yarn run build:prod && ./serverless/serverless.sh'
-climod-add-script --name 'build:serverless:test' --cmd 'yarn run build:prod && ./serverless/serverless.sh test'
+climod-add-script --name 'build:serverless' --cmd 'yarn run build:prod && cd .. && ./serverless/serverless.sh'
+climod-add-script --name 'build:serverless:test' --cmd 'yarn run build:prod && cd .. && ./serverless/serverless.sh test'
 
 echo 
-echo "# Congratulations, you just installed PWA Studio, cd into your new project and run the following commands manually    "  
-echo "                                                                                                                      "                                                           
-                                                                                                                    "                                             
+echo "# Congratulations, you just installed PWA Studio. Run 'yarn run build:serverless' to create your 1st build.           "  
+echo "                                                                                                                      "
