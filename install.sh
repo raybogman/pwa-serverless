@@ -45,5 +45,6 @@ climod-add-script --name 'build:serverless' --cmd 'yarn run build:prod && cd .. 
 climod-add-script --name 'build:serverless:test' --cmd 'yarn run build:prod && cd .. && ./serverless/serverless.sh test'
 
 echo 
-echo "# Congratulations, you just installed PWA Studio. Run 'yarn run build:serverless' to create your 1st build.           "  
+echo "# Congratulations, you just installed PWA Studio.                                                                     "  
+echo "# Run 'yarn run build:serverless' to create your 1st build in your project directory.                                 "
 echo "                                                                                                                      "
