@@ -33,6 +33,7 @@ echo
 echo " Auto start yarn create @magento/pwa in 10 seconds                                                                    "
 
 sleep 10
+cd ..
 yarn create @magento/pwa       
 
 echo 
