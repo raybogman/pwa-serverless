@@ -10,6 +10,10 @@ pub_test='./serverless/pub_test'
 CONFIG_ENV_FILE='./.env'
 date=$(date '+%Y-%m-%d--%H:%M:%S')
 
+# Override the ./env file & dist dir depending on the custom path 
+env_file=$(find . -type f -iname .env) && sed -i '' -e "s|./.env|$env_file|g" $base/serverless.sh
+dist_dir=$(find . -type d -mindepth 1 -maxdepth 2 -name dist) && sed -i '' -e "s|./dist|$dist_dir|g" $base/serverless.sh
+
 # Copy serverless files to 'pub' folder
 # Copy the MAGENTO_BACKEND_URL into the server.js
 # Rsync /dist to /pub prod or test folder including additional files 
