@@ -36,6 +36,9 @@ sleep 10
 cd ..
 yarn create @magento/pwa       
 
+env_file=$(find . -type f -iname .env) && sed -i '' -e "s|./.env|$env_file|g" ./serverless/serverless.sh
+dist_dir=$(find . -type d -mindepth 1 -maxdepth 2 -name dist) && sed -i '' -e "s|./dist|$dist_dir|g" ./serverless/serverless.sh
+
 new_dir=$(find . -type f -iname .env | awk '{split($0,a,"/"); print a[2];}')
 cd $new_dir
 climod-add-script --name 'build:serverless' --cmd 'yarn run build:prod && cd .. && ./serverless/serverless.sh'
