@@ -24,8 +24,8 @@ echo "#                                                                         
 echo "#   - Install AWS Copilot                                                                                             "
 echo "#     brew install aws/tap/copilot-cli                                                                                "
 echo "#                                                                                                                     "
-echo" #   - Create your PWA project                                                                                         "
-echo" #     yarn create @magento/pwa                                                                                        "
+echo "#   - Create your PWA project                                                                                         "
+echo "#     'yarn create @magento/pwa'                                                                                      "
 echo "##########################################################################################################            "
 echo 
 echo "# How to setup AWS Fargate - https://github.com/raybogman/pwa-studio-serverless                                       "
