@@ -8,7 +8,7 @@ climod-add-script --name 'build:serverless' --cmd 'yarn run build:prod && ./serv
 climod-add-script --name 'build:serverless:test' --cmd 'yarn run build:prod && ./serverless/serverless.sh test'
 git clone git@github.com:raybogman/serverless.git
 cd serverless
-mkdir pub_prod pub_test
+mkdir prod test
 rm -rf .git
 git init
 
@@ -51,4 +51,4 @@ dist_dir=$(find . -type d -mindepth 1 -maxdepth 2 -name dist) && sed -i '' -e "s
 echo 
 echo "# Congratulations, you just installed PWA Studio.                                                                     "  
 echo "# Run 'yarn run build:serverless' to create your 1st build in your project directory.                                 "
-echo "                                                                                                                       "
+echo "                                                                                                                      "

@@ -1,7 +1,7 @@
 # This YAML file defines the relationship and deployment ordering of your environments.
 
 # The name of the pipeline
-name: pipeline-venia-pwa-studio-serverless
+name: your-pipeline-name
 
 # The version of the schema used in this template
 version: 1
@@ -15,7 +15,7 @@ source:
   # has the following properties: repository, branch.
   properties:
     branch: master
-    repository: https://github.com/raybogman/serverless
+    repository: https://github.com/yourname/repo
     # Optional: specify the name of an existing CodeStar Connections connection.
     # connection_name: a-connection
 
@@ -23,11 +23,11 @@ source:
 # to your environments.
 stages:
     - # The name of the environment to deploy to.
-      name: pub_prod
+      name: prod
       # Optional: flag for manual approval action before deployment.
       # requires_approval: true
       # Optional: use test commands to validate this stage of your build.
       # test_commands: [echo 'running tests', make test]
 
     - # The name of the environment to deploy to.
-      name: pub_test
+      name: test

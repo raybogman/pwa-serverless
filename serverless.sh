@@ -5,8 +5,8 @@
 
 dist='./dist'
 base='./serverless'
-pub_prod='./serverless/pub_prod'
-pub_test='./serverless/pub_test'
+prod='./serverless/prod'
+test='./serverless/test'
 CONFIG_ENV_FILE='./.env'
 date=$(date '+%Y-%m-%d--%H:%M:%S')
 
@@ -15,26 +15,26 @@ date=$(date '+%Y-%m-%d--%H:%M:%S')
 # Rsync /dist to /pub prod or test folder including additional files 
 
 if [ "$1" == test ]; then
-    rm -rf $pub_test/*
+    rm -rf $test/*
     sleep 1
-    find $base/ -maxdepth 1 \( -name '*.json' -o -name '*.js' -o -name 'Dockerfile' \) | while read files ; do cp -Rp $files $pub_test/; done
+    find $base/ -maxdepth 1 \( -name '*.json' -o -name '*.js' -o -name 'Dockerfile' \) | while read files ; do cp -Rp $files $test/; done
     url=$(awk -F '"' '/MAGENTO_BACKEND_URL=/ {print $1}' $CONFIG_ENV_FILE | awk '{print substr($0, 21, length($0) - 0)}')
-    sed -i '' -e "s|example.com|$url|g" $pub_test/server.js
-    rsync -r $dist/* $pub_test
+    sed -i '' -e "s|example.com|$url|g" $test/server.js
+    rsync -r $dist/* $test
 else
-    rm -rf $pub_prod/*
+    rm -rf $prod/*
     sleep 1
-    find $base/ -maxdepth 1 \( -name '*.json' -o -name '*.js' -o -name 'Dockerfile' \) | while read files ; do cp -Rp $files $pub_prod/; done
+    find $base/ -maxdepth 1 \( -name '*.json' -o -name '*.js' -o -name 'Dockerfile' \) | while read files ; do cp -Rp $files $prod/; done
     url=$(awk -F '"' '/MAGENTO_BACKEND_URL=/ {print $1}' $CONFIG_ENV_FILE | awk '{print substr($0, 21, length($0) - 0)}')
-    sed -i '' -e "s|example.com|$url|g" $pub_prod/server.js
-    rsync -r $dist/* $pub_prod
+    sed -i '' -e "s|example.com|$url|g" $prod/server.js
+    rsync -r $dist/* $prod
 fi
 
 # Optional auto git push option && Alternative could be 'copilot svc deploy'
 if [ "$1" == test ]; then
-  cd $base/ && git add . && git commit -m "Build pub_test: $date"
+  cd $base/ && git add . && git commit -m "Build TEST: $date"
 else
-  cd $base/ && git add . && git commit -m "Build pub_prod: $date"
+  cd $base/ && git add . && git commit -m "Build PROD: $date"
 fi
 
 git push
