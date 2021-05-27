@@ -14,7 +14,7 @@ When you run `yarn run build:serverless test` all files will be located in `proj
 
 Enjoy your PWA play!
 
-In case you like to connect your newly created build to **AWS ECS/Fagate** please continue to the [copilot](#copilot) section.
+In case you like to connect your newly created build to **AWS ECS/Fagate** please continue to the [copilot](#copilot) section below.
 
 
 # Serverless (PWA Studio) - Manual setup
@@ -23,8 +23,8 @@ In case your do not prefer to kickoff with a fast start but rather do it all man
 
 Requirements:
 1. Clone this repository into your PWA root project
-2. Install AWS CLI
-3. Install AWS Copilot
+2. Install [https://aws.amazon.com/cli/](AWS CLI)
+3. Install [https://aws.github.io/copilot-cli/docs/overview/](AWS Copilot)
 4. Run `git init` in `./serverless` folder (create an new Github/Bitbucket just for CI/CD AWS CodePipeline build/deploy)
 5. Run `copilot init` in `./serverless` and complete all the steps shard in [https://github.com/raybogman/pwa-studio-serverless](https://github.com/raybogman/pwa-studio-serverless). Make sure your "production" environment is called `prod` (not prod). We will connected the public directory to the AWS CodePipeline build. We have created an `test` in case you like to setup a test environment (makes makes sense ;-) ).
 
@@ -55,8 +55,16 @@ keep in mind these step are not a best practice step yet. But I hope you get the
 
 To connect your build to **AWS ECS/Fargate** please follow the following steps:
 
-1. Install AWS CLI
-2. Install AWS Copilot
+1. Install [https://aws.amazon.com/cli/](AWS CLI)
+2. Install [https://aws.github.io/copilot-cli/docs/overview/](AWS Copilot)
+3. Create AWS IAM user and store the `aws_access_key_id` and `aws_secret_access_key` in `.aws/credentials` file on your pc.
+4. Make sure you have configured the new IAM user with the valid security [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security_iam_id-based-policy-examples.html#first-run-permissions](permissions).
+5. Open `copilot.sh` and add your IAM profile (username), app name, domain name.
+6. Run `./copilot.sh` for `prod` use. It will create all compoments in AWS ECS/Fargate and will deploy your first build.  
+7. Run `./copilot.sh test` for `test` use.
+
+:heavy_exclamation_mark: When using the `domain` feature, please configure your domain name in `AWS Route53` prior running the `copilot.sh` command. If domain not present remove it from the script then.
+
 
 ### Readings
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security_iam_id-based-policy-examples.html#first-run-permissions](Amazon ECS First Run Wizard Permissions)
