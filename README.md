@@ -57,8 +57,8 @@ The following files are created pipeline.yml & buildspec.yml in your copilot fol
 3. Choose `Install a new app` in the popup window.
 
 Like to check if all is working correctly and connected run these.
-4. `copilot pipeline status`.
-5. `copilot pipeline show`.
+- `copilot pipeline status`
+- `copilot pipeline show`
 
 In case you like to remove or start from scratch with your AWS copilot pipeline run the following command.
 1. `copilot pipeline delete`
