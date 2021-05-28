@@ -26,7 +26,7 @@ Requirements:
 2. Install [https://aws.amazon.com/cli/](AWS CLI)
 3. Install [https://aws.github.io/copilot-cli/docs/overview/](AWS Copilot)
 4. Run `git init` in `./serverless` folder (create an new Github/Bitbucket just for CI/CD AWS CodePipeline build/deploy)
-5. Run `copilot init` in `./serverless` and complete all the steps shard in [https://github.com/raybogman/pwa-studio-serverless](https://github.com/raybogman/pwa-studio-serverless). Make sure your "production" environment is called `prod` (not prod). We will connected the public directory to the AWS CodePipeline build. We have created an `test` in case you like to setup a test environment (makes makes sense ;-) ).
+5. Run `copilot init` in `./serverless` and complete all the steps shared in [https://github.com/raybogman/pwa-studio-serverless](https://github.com/raybogman/pwa-studio-serverless). Make sure your **production** environment is called `prod`. We will connected the public directory to the AWS CodePipeline build.
 
 :exclamation: Make sure your Git and AWS Copilot `init` process has been setup before you continue.
 
@@ -37,19 +37,37 @@ keep in mind these step are not a best practice step yet. But I hope you get the
 
 1. Add the following commands to your `package.json` in de scripts section from your project directory.
 ```bash
-    `"build:serverless": "yarn run build:prod && ./serverless/serverless.sh",`
-    `"build:serverless:test": "yarn run build:prod && ./serverless/serverless.sh test",`
+    `"build:serverless": "yarn run build:prod && cd .. && ./serverless/serverless.sh",`
+    `"build:serverless:test": "yarn run build:prod && cd .. && ./serverless/serverless.sh test",`
 ```    
 2. Run `yarn run build:serverless` from your project folder in case you like to build a `production` setup or run `yarn run build:serverless:test` for a `test` setup.    
 3. Review the `./serverless/prod` or `./serverless/test` folder. You will see the following files: packages.json, server.js, server-express.js and Dockerfile, copilot, .git an all off the PWA Studio Venia files.
 4. Now lets push the code to Github or Bitbucket (make sure all AWS Copilot steps have been followwed), or deploy directly to AWS ECS/Fargate using `copilot svc deploy --env prod` or `copilot svc deploy --env test`? 
 
+### AWS CodePipeline CI/CD
 
-:mega:
-- Review your `copilot/pipeline.yml` file in `stages` -> `name` if this is `prod` and `test`. `prod` will be the build directory for production and `test` for test. Run `copilot pipeline update` in case you like to update the repository.
-- You can install `npm i climod-add-script` to add the scripts into your package.json using the command line.
-    - climod-add-script --name 'build:serverless' --cmd 'yarn run build:prod && ./serverless/serverless.sh'
-    - climod-add-script --name 'build:serverless:test' --cmd 'yarn run build:prod && ./serverless/serverless.sh test'
+Like to build a more flexible way to deploy your newly create code online? Then you mostly likely like to leverage AWS Coplilot Pipeline. It's as easy as it sounds. Follow below steps to get your Github or Bitbucket repository connected to the AWS CodePipeline, CodeBuild and CodeDeploy flow.
+
+- copilot pipeline init
+
+The following files are created pipeline.yml & buildspec.yml in your copilot folder. Before you run the following command make sure to review the pipeline.yml file and update your branch name to "master". Default is set to "main". In case you have forgotten a workaround is to update the AWS CodePipeline -> Pipeline Name -> Edit -> Edit Stage -> Edit Action -> Branch name (it's pretty much well hidden, so be carefull it will save you tons of debugging why your pipeline is not working)
+
+1. copilot pipeline update
+2. go to: https://console.aws.amazon.com/codesuite/settings/connections (authorize Github/Bitbucket/Github Enterprise to connect your repository to AWS CodePipeline -> AWS CodeBuild -> AWS CodeDeploy) to support "AWS Connector for GitHub"
+3. Choose `Install a new app` in the popup window.
+
+Like to check if all is working correctly and connected run these.
+4. copilot pipeline status
+5. copilot pipeline show
+
+In case you like to remove or start from scratch with your AWS copilot pipeline run the following command.
+1. copilot pipeline delete
+2. Review your `copilot/pipeline.yml` file in `stages` -> `name` if this is `prod` and `test`. `prod` will be the build directory for production and `test` for test. Run `copilot pipeline update` in case you like to update the repository.
+3. You can install `yarn global add climod-add-script` to add the scripts into your package.json using the command line.
+```bash
+    `"build:serverless": "yarn run build:prod && cd .. && ./serverless/serverless.sh",`
+    `"build:serverless:test": "yarn run build:prod && cd .. && ./serverless/serverless.sh test",`
+```  
 
 # Copilot
 
