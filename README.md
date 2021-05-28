@@ -48,20 +48,20 @@ keep in mind these step are not a best practice step yet. But I hope you get the
 
 Like to build a more flexible way to deploy your newly create code online? Then you mostly likely like to leverage AWS Coplilot Pipeline. It's as easy as it sounds. Follow below steps to get your Github or Bitbucket repository connected to the AWS CodePipeline, CodeBuild and CodeDeploy flow.
 
-- copilot pipeline init
+- `copilot pipeline init`
 
 The following files are created pipeline.yml & buildspec.yml in your copilot folder. Before you run the following command make sure to review the pipeline.yml file and update your branch name to "master". Default is set to "main". In case you have forgotten a workaround is to update the AWS CodePipeline -> Pipeline Name -> Edit -> Edit Stage -> Edit Action -> Branch name (it's pretty much well hidden, so be carefull it will save you tons of debugging why your pipeline is not working)
 
-1. copilot pipeline update
+1. `copilot pipeline update`
 2. go to: https://console.aws.amazon.com/codesuite/settings/connections (authorize Github/Bitbucket/Github Enterprise to connect your repository to AWS CodePipeline -> AWS CodeBuild -> AWS CodeDeploy) to support "AWS Connector for GitHub"
 3. Choose `Install a new app` in the popup window.
 
 Like to check if all is working correctly and connected run these.
-4. copilot pipeline status
-5. copilot pipeline show
+4. `copilot pipeline status`
+5. `copilot pipeline show`
 
 In case you like to remove or start from scratch with your AWS copilot pipeline run the following command.
-1. copilot pipeline delete
+1. `copilot pipeline delete`
 2. Review your `copilot/pipeline.yml` file in `stages` -> `name` if this is `prod` and `test`. `prod` will be the build directory for production and `test` for test. Run `copilot pipeline update` in case you like to update the repository.
 3. You can install `yarn global add climod-add-script` to add the scripts into your package.json using the command line.
 ```bash
